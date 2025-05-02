@@ -1,0 +1,107 @@
+#!/bin/bash
+# yankp: Copy present working directory or specific file path to clipboard
+
+# help function
+showHelp(){
+cat <<EOF
+
+Usage: yankp [OPTIONS]
+
+Simple utility to yank (copy) paths into your clipboard.
+By default, it copies the current working directory.
+Use the -f option to copy the full path to a file inside the current directory.
+
+Options:
+  -f FILE     Copy the full path to the specified FILE inside current dir.
+  -h          Display help message and exit.
+
+Examples:
+  yankp               # Copies current working directory
+  yankp -f abc.txt    # Copies full path to abc.txt inside current directory
+
+NOTE:
+- Automatically expands symbolic links to real paths.
+- Output is silently copied to clipboard.
+EOF
+}
+
+# Check Dependencies
+#if ! command -v xclip >/dev/null && ! command -v pbcopy >/dev/null ; then
+   # echo "Error: Requires xclip (Linux) or pbcopy (macOS) installed."
+    #exit 1
+#fi
+
+#!/bin/bash
+
+# Detect OS type
+os="$(uname)"
+
+# Check and install xclip or pbcopy
+installClipboardTool() {
+    if [[ "$os" == "Linux" ]]; then
+        if ! command -v xclip &> /dev/null; then
+            echo "[!] xclip not found. Attempting to install..."
+            if command -v apt &> /dev/null; then
+                sudo apt update && sudo apt install -y xclip
+            elif command -v pacman &> /dev/null; then
+                sudo pacman -S xclip --noconfirm
+            else
+                echo "❌ Unsupported package manager. Please install xclip manually."
+                exit 1
+            fi
+        fi
+    elif [[ "$os" == "Darwin" ]]; then
+        if ! command -v pbcopy &> /dev/null; then
+            echo "[!] pbcopy not found. Installing via Homebrew..."
+            if ! command -v brew &> /dev/null; then
+                echo "❌ Homebrew not found. Please install it: https://brew.sh/"
+                exit 1
+            fi
+            brew install pbcopy  # This usually comes with macOS, but if missing
+        fi
+    else
+        echo "❌ Unsupported OS: $os"
+        exit 1
+    fi
+}
+
+# Run the check
+installClipboardTool
+
+
+
+# Clipboard copy function
+copyToClipboard(){
+    if command -v pbcopy >/dev/null ; then
+        echo -n "$1" | pbcopy
+    elif command -v xclip >/dev/null ; then
+        echo -n "$1" | xclip -selection clipboard
+    fi
+}
+
+# Main Logic
+if [[ "$1" == "-h" ]]; then
+    showHelp
+    exit 0
+
+elif [[ "$1" == "-f" && -n "$2" ]]; then
+    targetFile="$2"
+
+    if [[ -e "$targetFile" ]]; then
+        path="$(realpath "$targetFile")"
+        copyToClipboard "$path"
+        echo "Yanked file path: $path"
+    else 
+        echo "Error: File '$targetFile' does not exist in current directory." >&2
+        exit 1
+    fi
+
+elif [[ -z "$1" ]]; then
+    dir="$(pwd)"
+    copyToClipboard "$dir"
+    echo "Yanked directory path: $dir"
+
+else 
+    echo "Error: Unknown option. Use -h for help." >&2
+    exit 1
+fi

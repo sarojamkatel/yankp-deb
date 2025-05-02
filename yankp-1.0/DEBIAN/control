@@ -1,0 +1,8 @@
+Package: yankp
+Version : 1.0
+Section : utils
+Priority : optional
+Architecture: all
+Depends : xclip | pbcopy
+Maintainer: imgroot
+Description: A simple utility to yank paths into your clipboard. This tool copies either the pwd or the full path of a specified file into your clipboard.
