@@ -18,18 +18,17 @@ Perfect for terminal lovers, script writers, bug bounty hunters, and anyone tire
 
 ## ⚙️ Installation
 
-You have two ways to install `yankp`:
 
-### 🧰 Option 1: Manual Installation
+### 1) Install via APT (Debian/Ubuntu-based systems)
+
+echo "deb [trusted=yes] https://sarojamkatel.github.io/yankp-deb/repo ./" | sudo tee /etc/apt/sources.list.d/yankp.list
+sudo apt update
+sudo apt install yankp
+
+### 2) Manual Installation
 
 ```bash
 git clone https://github.com/yourusername/yankp.git
 cd yankp
 chmod +x yankp
 sudo mv yankp /usr/local/bin/
-
-📦 Option 2: Install via APT (Debian/Ubuntu-based systems)
-
-echo "deb [trusted=yes] https://sarojamkatel.github.io/yankp-deb/repo ./" | sudo tee /etc/apt/sources.list.d/yankp.list
-sudo apt update
-sudo apt install yankp
