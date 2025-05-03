@@ -1,22 +1,34 @@
+# Yankp - Copy File or Directory Paths to Clipboard
 
-#echo "deb [trusted=yes] https://sarojamkatel.github.io/yankp-deb/repo ./" | sudo tee /etc/apt/sources.list.d/yankp.list
+`yankp` is a simple yet handy shell tool that lets you **copy the current working directory** or the **absolute path to a specific file** into your **system clipboard** using `xclip` (Linux) or `pbcopy` (macOS).  
 
-# what it does:
+Perfect for terminal lovers, script writers, bug bounty hunters, and anyone tired of typing out long paths!
 
-   # This adds a new APT source to your system by creating a file named yankp.list in /etc/apt/sources.list.d/.
+---
 
-  #  The line inside it tells apt:
+##  Features
 
-    #    deb: This is a Debian package repository.
+-  Copy current working directory to clipboard  
+-  Copy full file paths relative to the current directory  
+-  Auto-detect and install clipboard utilities (`xclip`, `pbcopy`)  
+-  Minimal, dependency-light, pure Bash  
+-  Built-in help menu via `yankp -h`
 
-   #     [trusted=yes]: Trust this source even though it's not signed with a GPG key (ok for personal/testing repos).
+---
 
-  #      https://sarojamkatel.github.io/yankp-deb/repo: This is the URL of the  APT repository (hosted on GitHub Pages).
+##  Installation
 
- #       ./: Use the packages found in that directory without looking for a specific release or distribution name.
+### 1. Clone the repo:
 
-# After this step, your system knows where to look for the yankp package.
+```bash
+git clone https://github.com/yourusername/yankp.git
+cd yankp
+chmod +x yankp
 
+
+
+
+Do this to make your system know where to look for the yankp package:
 
 echo "deb [trusted=yes] https://sarojamkatel.github.io/yankp-deb/repo ./" | sudo tee /etc/apt/sources.list.d/yankp.list
 sudo apt update
