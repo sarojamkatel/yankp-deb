@@ -26,9 +26,10 @@ cd yankp
 chmod +x yankp
 
 
+### 2. or you can install debian package as: 
 
 
-Do this to make your system know where to look for the yankp package:
+##Do this to make your system know where to look for the yankp package:
 
 echo "deb [trusted=yes] https://sarojamkatel.github.io/yankp-deb/repo ./" | sudo tee /etc/apt/sources.list.d/yankp.list
 sudo apt update
