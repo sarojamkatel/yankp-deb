@@ -6,32 +6,30 @@ Perfect for terminal lovers, script writers, bug bounty hunters, and anyone tire
 
 ---
 
-##  Features
+## ✨ Features
 
--  Copy current working directory to clipboard  
--  Copy full file paths relative to the current directory  
--  Auto-detect and install clipboard utilities (`xclip`, `pbcopy`)  
--  Minimal, dependency-light, pure Bash  
--  Built-in help menu via `yankp -h`
+- 📁 Copy current working directory to clipboard  
+- 📄 Copy full file path of any file under the current directory  
+- 🔍 Auto-detect and install clipboard utilities (`xclip`, `pbcopy`)  
+- 🧼 Minimal, dependency-light, pure Bash  
+- 📖 Built-in help menu via `yankp -h`
 
 ---
 
-##  Installation
+## ⚙️ Installation
 
-### 1. Clone the repo:
+You have two ways to install `yankp`:
+
+### 🧰 Option 1: Manual Installation
 
 ```bash
 git clone https://github.com/yourusername/yankp.git
 cd yankp
 chmod +x yankp
+sudo mv yankp /usr/local/bin/
 
-
-### 2. or you can install debian package as: 
-
-
-##Do this to make your system know where to look for the yankp package:
+📦 Option 2: Install via APT (Debian/Ubuntu-based systems)
 
 echo "deb [trusted=yes] https://sarojamkatel.github.io/yankp-deb/repo ./" | sudo tee /etc/apt/sources.list.d/yankp.list
 sudo apt update
 sudo apt install yankp
-
