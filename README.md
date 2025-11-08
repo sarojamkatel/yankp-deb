@@ -28,7 +28,7 @@ sudo apt install yankp
 ### 2) Manual Installation
 
 ```bash
-git clone https://github.com/yourusername/yankp.git
+git clone https://github.com/sarojamkatel/yankp.git
 cd yankp
 chmod +x yankp
 sudo mv yankp /usr/local/bin/
