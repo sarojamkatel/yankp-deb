@@ -29,6 +29,5 @@ sudo apt install yankp
 
 ```bash
 git clone https://github.com/sarojamkatel/yankp.git
-cd yankp
-chmod +x yankp
-sudo mv yankp /usr/local/bin/
+cd /home/gg/yankp-deb/repo
+sudo dpkg -i yankp-1.0.deb
